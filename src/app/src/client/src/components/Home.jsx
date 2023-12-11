@@ -1,11 +1,11 @@
-import './Home.css';
-import Service from './service/Service';
-import heroImg from './img/hero.png';
-import Navbar from './navbar/Navbar';
-import About from './about-us/About';
-import Menu from './menu-example/Menu';
-import Chefs from './chefs/Chefs';
-import Footer from './footer/Footer';
+import "./Home.css";
+import Service from "./service/Service";
+import heroImg from "./img/hero.png";
+import Navbar from "./navbar/Navbar";
+import About from "./about-us/About";
+import Menu from "./menu-example/Menu";
+import Chefs from "./chefs/Chefs";
+import Footer from "./footer/Footer";
 
 function Home() {
   return (
