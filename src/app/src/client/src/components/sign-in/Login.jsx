@@ -149,11 +149,11 @@ const LoginPage = () => {
                 justifyContent: 'space-between',
               }}
             >
-              <Link passHref href="/">
+              {/* <Link passHref href="/">
                 <LinkStyled onClick={(e) => e.preventDefault()}>
                   Forgot Password?
                 </LinkStyled>
-              </Link>
+              </Link> */}
             </Box>
             <Button
               fullWidth
@@ -176,9 +176,9 @@ const LoginPage = () => {
                 New on our platform?
               </Typography>
               <Typography variant="body2">
-                <Link passHref href="/pages/register">
+                <a href="/sign-up">
                   <LinkStyled>Create an account</LinkStyled>
-                </Link>
+                </a>
               </Typography>
             </Box>
             <Box

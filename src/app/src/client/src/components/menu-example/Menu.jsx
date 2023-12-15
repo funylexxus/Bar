@@ -11,6 +11,8 @@ import menu_8 from '../img/menu-8.jpg';
 import { MenuIcons } from './MenuIcons';
 import { MenuItem } from './MenuItem';
 import { MenuTab } from './MenuTab';
+import '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/free-solid-svg-icons';
 
 function Menu() {
   return (
@@ -33,17 +35,17 @@ function Menu() {
                 'd-flex align-items-center text-start mx-3 ms-0 pb-3 active'
               }
               tabName={'#tab-1'}
-              iconsClassName={'fa fa-coffee fa-2x text-primary'}
-              text={'Popular'}
-              secondText={'Breakfast'}
+              iconsClassName={'fa fa-beer fa-2x text-primary '}
+              text={'Low '}
+              secondText={'Alcohol Drinks'}
             />
 
             <MenuIcons
               linkClassName={'d-flex align-items-center text-start mx-3 pb-3'}
               tabName={'#tab-2'}
-              iconsClassName={'fa fa-hamburger fa-2x text-primary'}
-              text={'Special'}
-              secondText={'Launch'}
+              iconsClassName={'fa fa-wine-glass fa-2x text-primary'}
+              text={'Medium and Strong'}
+              secondText={'Alcohol Drinks'}
             />
 
             <MenuIcons
@@ -51,9 +53,9 @@ function Menu() {
                 'd-flex align-items-center text-start mx-3 me-0 pb-3'
               }
               tabName={'#tab-3'}
-              iconsClassName={'fa fa-utensils fa-2x text-primary'}
-              text={'Lovely'}
-              secondText={'Dinner'}
+              iconsClassName={'fa fa-hamburger fa-2x text-primary'}
+              text={'Snacks'}
+              secondText={'For Drinks'}
             />
           </ul>
 
