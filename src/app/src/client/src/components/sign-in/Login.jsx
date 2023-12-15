@@ -1,5 +1,5 @@
 // ** React Imports
-import { useState } from 'react';
+import { useState, Fragment } from 'react';
 
 // ** Next Imports
 import { Link, useNavigate } from 'react-router-dom';
@@ -33,11 +33,11 @@ const LinkStyled = styled('a')(({ theme }) => ({
   color: theme.palette.primary.main,
 }));
 
-const RegisterPage = () => {
+const LoginPage = () => {
   // ** States
   const [values, setValues] = useState({
-    firstName: '',
-    lastName: '',
+    // firstName: "",
+    // lastName: "",
     email: '',
     password: '',
     showPassword: false,
@@ -58,11 +58,11 @@ const RegisterPage = () => {
     event.preventDefault();
   };
 
-  const auth = async () => {
+  const login = async () => {
     try {
-      const res = await axios.post('http://localhost:3000/auth/signup', {
-        firstName: values.firstName,
-        lastName: values.lastName,
+      const res = await axios.post('http://localhost:8000/sign-in', {
+        // firstName: values.firstName,
+        // lastName: values.lastName,
         email: values.email,
         password: values.password,
       });
@@ -106,7 +106,7 @@ const RegisterPage = () => {
             autoComplete="off"
             onSubmit={(e) => e.preventDefault()}
           >
-            <TextField
+            {/* <TextField
               autoFocus
               fullWidth
               id="firstname"
@@ -114,8 +114,8 @@ const RegisterPage = () => {
               sx={{ marginBottom: 4 }}
               onChange={handleChange('firstName')}
               value={values.firstName}
-            />
-            <TextField
+            /> */}
+            {/* <TextField
               autoFocus
               fullWidth
               id="lastname"
@@ -123,7 +123,7 @@ const RegisterPage = () => {
               sx={{ marginBottom: 4 }}
               onChange={handleChange('lastName')}
               value={values.lastName}
-            />
+            /> */}
             <TextField
               fullWidth
               type="email"
@@ -133,11 +133,11 @@ const RegisterPage = () => {
               value={values.email}
             />
             <FormControl fullWidth>
-              <InputLabel htmlFor="auth-register-password">Password</InputLabel>
+              <InputLabel htmlFor="login-password">Password</InputLabel>
               <OutlinedInput
                 label="Password"
                 value={values.password}
-                id="auth-register-password"
+                id="login-password"
                 onChange={handleChange('password')}
                 type={values.showPassword ? 'text' : 'password'}
                 endAdornment={
@@ -164,11 +164,11 @@ const RegisterPage = () => {
               type="submit"
               variant="contained"
               sx={{ marginBottom: 7 }}
-              onClick={auth}
+              onClick={login}
             >
-              Sign up
+              Sign in
             </Button>
-            <Box
+            {/* <Box
               sx={{
                 display: 'flex',
                 alignItems: 'center',
@@ -184,7 +184,7 @@ const RegisterPage = () => {
                   <LinkStyled>Sign in instead</LinkStyled>
                 </Link>
               </Typography>
-            </Box>
+            </Box> */}
             <Box
               sx={{
                 display: 'flex',
@@ -199,4 +199,4 @@ const RegisterPage = () => {
   );
 };
 
-export default RegisterPage;
+export default LoginPage;
