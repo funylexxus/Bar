@@ -2,9 +2,15 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Drink } from './schemas/drink.schema';
 import { Model } from 'mongoose';
+import * as _ from 'lodash';
 import { CreateDrinkDto } from './dto/create-drink.dto';
 import { UpdateDrinkDto } from './dto/update-drink.dto';
 import { DeleteDrinksDto } from './dto/delete-drinks.dto';
+
+const SORT_ORDER = {
+	asc: 1,
+	desc: -1,
+};
 
 @Injectable()
 export class DrinkService {
@@ -13,27 +19,64 @@ export class DrinkService {
 		private drinkModel: Model<Drink>,
 	) {}
 
-	async findAll({ page = 1, itemsPerPage = 2, ...query }) {
-		const skip = itemsPerPage * (page - 1);
-		const keyword = query.keyword
-			? {
-					name: {
-						$regex: query.keyword,
-						$options: 'i',
-					},
-			  }
-			: {};
+	async findAll({
+		page = 1,
+		itemsPerPage = 2,
+		sortField = 'name',
+		sortOrder = 'asc',
+		...query
+	}) {
+		const matchStage = { $or: [] };
+		const pipeline = [];
 
-		const drinks = await this.drinkModel
-			.find({ ...keyword })
-			.skip(skip)
-			.limit(itemsPerPage);
+		if (query.keyword) {
+			const escapedQuery = _.replace(
+				query.keyword,
+				/[.*+?^${}()|[\]\\]/g,
+				'\\$&',
+			);
+			const regex = { $regex: escapedQuery, $options: 'i' };
+
+			matchStage.$or.push(
+				{ name: regex },
+				{ description: regex },
+				{ volume: regex },
+				{ price: regex },
+			);
+
+			pipeline.push({ $match: matchStage });
+		}
+
+		const facetData = [
+			{ $sort: { [sortField]: SORT_ORDER[sortOrder] } },
+			{ $skip: (page - 1) * itemsPerPage },
+			{ $limit: _.parseInt(itemsPerPage) },
+		];
+
+		pipeline.push({
+			$facet: {
+				data: facetData,
+				count: [{ $count: 'count' }],
+			},
+		});
+
+		const [{ data: drinks, count }] = await this.drinkModel.aggregate(
+			pipeline,
+			{ collation: { locale: 'en_US' } },
+		);
+		const totalCount = count?.[0]?.count ?? 0;
+		let pagesCount = 0;
+		pagesCount = _.ceil(totalCount / itemsPerPage);
 
 		return {
 			drinks,
 			pagination: {
 				currentPage: page,
 				itemsPerPage,
+				pagesCount,
+				totalCount,
+				sortField,
+				sortOrder,
 			},
 		};
 	}

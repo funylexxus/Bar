@@ -1,17 +1,19 @@
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsDecimal, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class CreateDrinkDto {
 	@IsNotEmpty()
 	@IsString()
 	readonly name: string;
 
+	@IsNotEmpty()
+	@IsString()
 	readonly description: string;
 
+	@IsDecimal()
 	@IsNotEmpty()
-	@IsNumber()
-	readonly price: string;
+	readonly price: number;
 
 	@IsNotEmpty()
-	@IsNumber()
-	readonly volume: string;
+	@IsDecimal()
+	readonly volume: number;
 }

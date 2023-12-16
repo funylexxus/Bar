@@ -2,6 +2,7 @@ version: '3.1'
 
 services:
   mongo:
+    container_name: mongo_bar
     image: mongo:latest
     restart: always
     ports:
@@ -10,9 +11,10 @@ services:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: root
     volumes:
-      - mongo-auth:/data/db
+      - mongo:/data/db
 
   mongo-express:
+    container_name: mongo-express_bar
     image: mongo-express
     restart: always
     ports:
@@ -23,4 +25,5 @@ services:
       ME_CONFIG_MONGODB_URL: mongodb://admin:root@mongo:27017/
 
 volumes:
-  mongo-auth:
+  mongo:
+    name: mongo_bar

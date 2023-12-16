@@ -22,6 +22,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 		const { id } = payload;
 
 		Logger.log('user', id);
+		console.log('here');
 		const user = await this.userModel.findById(id);
 
 		console.log('user', user);

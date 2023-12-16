@@ -14,16 +14,16 @@ import { Drink } from './schemas/drink.schema';
 import { ValidateMongoId } from 'src/pipes/validationPipe';
 import { CreateDrinkDto, UpdateDrinkDto } from './dto';
 import { DeleteDrinksDto } from './dto/delete-drinks.dto';
-import { Query as ExpressQuery } from 'express-serve-static-core';
 import { AuthGuard } from '@nestjs/passport';
+import { GetDrinksDto } from './dto/get-drink.dto';
 
-@Controller('drinks')
+@Controller('api/v1/drinks')
 export class DrinkController {
 	constructor(private drinkService: DrinkService) {}
 
 	@Get()
 	@UseGuards(AuthGuard())
-	getAll(@Query() query: ExpressQuery): Promise<any> {
+	getAll(@Query() query): Promise<any> {
 		return this.drinkService.findAll(query);
 	}
 
