@@ -1,8 +1,8 @@
-import React from "react";
-import "./Navbar.css";
-import heroImg from "../img/hero.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import React from 'react';
+import './Navbar.css';
+import heroImg from '../img/hero.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
 function Navbar() {
   return (
@@ -19,7 +19,8 @@ function Navbar() {
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#navbarCollapse">
+          data-bs-target="#navbarCollapse"
+        >
           <span className="fa fa-bars"></span>
         </button>
 
@@ -41,7 +42,8 @@ function Navbar() {
               <a
                 href="#"
                 className="nav-link dropdown-toggle"
-                data-bs-toggle="dropdown">
+                data-bs-toggle="dropdown"
+              >
                 Pages
               </a>
               <div className="dropdown-menu m-0">
@@ -63,7 +65,14 @@ function Navbar() {
           <a href="" className="btn btn-primary py-2 px-4">
             Book A Table
           </a>
-          <Link to="/sign-up">Sign Up</Link>
+          <a href="/sign-up" className="btn btn-primary mx-3 py-2 px-4">
+            Sign Up
+          </a>
+          {/* <Link to="/sign-up">Sign Up</Link> */}
+          <a href="/sign-in" className="btn btn-primary  py-2 px-4">
+            Log in
+          </a>
+          {/* <Link to="/sign-in">Log in</Link> */}
         </div>
       </nav>
 
@@ -83,7 +92,8 @@ function Navbar() {
               </p>
               <a
                 href=""
-                className="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">
+                className="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft"
+              >
                 Book A Table
               </a>
             </div>
