@@ -1,4 +1,8 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+	BadRequestException,
+	Injectable,
+	UnauthorizedException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from './schemas/user.schema';
 import { Model } from 'mongoose';
@@ -9,46 +13,65 @@ import { LoginDto } from './dto/login.dto';
 
 @Injectable()
 export class AuthService {
-  constructor(
-    @InjectModel(User.name)
-    private userModel: Model<User>,
-    private jwtService: JwtService,
-  ) {}
+	constructor(
+		@InjectModel(User.name)
+		private userModel: Model<User>,
+		private jwtService: JwtService,
+	) {}
 
-  async signUp(signUpDto: SignUpDto): Promise<{ token: string }> {
-    const { firstName, lastName, email, password } = signUpDto;
+	async checkEmail(email) {
+		const user = await this.userModel.findOne({ email });
 
-    const hashPassword = await bcrypt.hash(password, 10);
+		return { emailAlreadyExist: !!user };
+	}
 
-    const user = await this.userModel.create({
-      firstName,
-      lastName,
-      email,
-      password: hashPassword,
-    });
+	async signUp(signUpDto: SignUpDto, req): Promise<{ token: string }> {
+		const { firstName, lastName, email, password } = signUpDto;
 
-    const token = this.jwtService.sign({ id: user._id });
+		const user = await this.userModel.findOne({ email });
 
-    return { token };
-  }
+		if (user) {
+			throw new BadRequestException({ message: ['email already exists'] });
+		}
 
-  async login(loginDto: LoginDto): Promise<{ token }> {
-    const { email, password } = loginDto;
+		const hashPassword = await bcrypt.hash(password, 10);
+		const isAdmin = req.get('origin') === process.env.ADMIN_URL;
+		const createdUser = await this.userModel.create({
+			firstName,
+			lastName,
+			email,
+			password: hashPassword,
+			isAdmin,
+		});
 
-    const user = await this.userModel.findOne({ email });
+		const token = this.jwtService.sign({ id: createdUser._id });
 
-    if (!user) {
-      throw new UnauthorizedException('!Invalid email');
-    }
+		return { token };
+	}
 
-    const isPasswordMatched = await bcrypt.compare(password, user.password);
+	async login(loginDto: LoginDto, req): Promise<{ token }> {
+		const { email, password } = loginDto;
+		const user = await this.userModel.findOne({ email });
 
-    if (!isPasswordMatched) {
-      throw new UnauthorizedException('!Invalid password');
-    }
+		if (!user) {
+			throw new UnauthorizedException('!Invalid email');
+		}
 
-    const token = this.jwtService.sign({ id: user._id });
+		const isPasswordMatched = await bcrypt.compare(password, user.password);
 
-    return { token };
-  }
+		if (!isPasswordMatched) {
+			throw new UnauthorizedException('!Invalid password');
+		}
+
+		const isRequestFromAdmin = req.get('origin') === process.env.ADMIN_URL;
+		const userIsNotAdmin = !user.isAdmin;
+
+		if (isRequestFromAdmin && userIsNotAdmin) {
+			throw new UnauthorizedException('Acess permission denied');
+		}
+
+		const token = this.jwtService.sign({ id: user._id });
+
+		return { token };
+	}
 }

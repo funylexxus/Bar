@@ -14,7 +14,13 @@ export class User {
 	email: string;
 
 	@Prop()
+	username: string;
+
+	@Prop()
 	password: string;
+
+	@Prop({ default: false })
+	isAdmin: boolean;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
