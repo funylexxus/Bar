@@ -5,6 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap';
 import RegisterPage from './components/register/Register';
 import LoginPage from './components/sign-in/Login';
+import '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/free-solid-svg-icons';
 
 function App() {
   return (

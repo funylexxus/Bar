@@ -34,7 +34,7 @@ function About() {
             </h5>
             <h1 className="mb-4">
               Welcome to <i className="fa fa-utensils text-primary me-2"></i>
-              Restoran
+              Bar
             </h1>
             <AboutDescr
               descr={

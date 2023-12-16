@@ -163,7 +163,7 @@ const RegisterPage = () => {
               size="large"
               type="submit"
               variant="contained"
-              sx={{ marginBottom: 7 }}
+              sx={{ marginBottom: 7, marginTop: 4 }}
               onClick={auth}
             >
               Sign up
@@ -180,9 +180,9 @@ const RegisterPage = () => {
                 Already have an account?
               </Typography>
               <Typography variant="body2">
-                <Link passHref href="/pages/login">
+                <a href="/sign-in">
                   <LinkStyled>Sign in instead</LinkStyled>
-                </Link>
+                </a>
               </Typography>
             </Box>
             <Box
