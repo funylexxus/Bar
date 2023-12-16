@@ -2,8 +2,8 @@
 import { useState } from 'react';
 
 // ** Next Imports
-import { Link, useNavigate } from 'react-router-dom';
-import axios, { getAdapter } from 'axios';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import Cookies from 'js-cookie';
 
 // ** MUI Components

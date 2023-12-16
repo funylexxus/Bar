@@ -1,9 +1,7 @@
 import React from 'react';
 import './Navbar.css';
 import heroImg from '../img/hero.png';
-import cartImg from '../img/cart.svg';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
+import Cart from '../cart/Cart';
 
 function Navbar() {
   return (
@@ -11,7 +9,7 @@ function Navbar() {
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
         <a href="" className="navbar-brand p-0">
           <h1 className="text-primary m-0">
-            <i className="fa fa-utensils me-3"></i>Bar
+            <i className="fa fa-beer me-3"></i>Bar
           </h1>
           {/* <img src="img/logo.png" alt="Logo"> */}
         </a>
@@ -69,12 +67,12 @@ function Navbar() {
           <a href="/sign-up" className="btn btn-primary mx-3 py-2 px-4">
             Sign Up
           </a>
-          <a href="">
-            <img className="" src={cartImg} alt="" />
+          <a href="/cart" className="fa fa-shopping-cart text-primary">
+            <a href="" style={{ display: 'none' }}>
+              <Cart />
+            </a>
+            {/* <img className="text-primary" src={cartImg} alt="" /> */}
           </a>
-          {/* <a href="/sign-in" className="btn btn-primary  py-2 px-4">
-            Log in
-          </a> */}
         </div>
       </nav>
 

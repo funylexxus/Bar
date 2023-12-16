@@ -119,7 +119,6 @@ function Menu() {
                 />
               </div>
             </div>
-            {/*   </MenuTab> */}
 
             <div id="tab-2" className="tab-pane fade show p-0">
               <div className="row g-4">
