@@ -1,9 +1,5 @@
 import React from 'react';
 import './Chefs.css';
-import team_1 from '../img/team-1.jpg';
-import team_2 from '../img/team-2.jpg';
-import team_3 from '../img/team-3.jpg';
-import team_4 from '../img/team-4.jpg';
 import kosen from '../img/kosen.jpg';
 import vu_sleeping from '../img/vu_sleeping.jpg';
 import tsevan from '../img/tsevan.jpg';

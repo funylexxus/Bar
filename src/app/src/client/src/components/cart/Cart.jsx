@@ -1,5 +1,6 @@
 import React from 'react';
 import './Cart.css';
+import { Link } from 'react-router-dom';
 
 function Cart() {
   return (
@@ -139,17 +140,17 @@ function Cart() {
         </div>
         <div className="row mt-4 d-flex align-items-center">
           <div className="col-sm-6 order-md-2 text-right">
-            <a
-              href="catalog.html"
+            <Link
+              to="catalog.html"
               className="btn btn-primary mb-4 btn-lg pl-5 pr-5"
             >
               Checkout
-            </a>
+            </Link>
           </div>
           <div className="col-sm-6 mb-3 mb-m-1 order-md-1 text-md-left">
-            <a href="/">
+            <Link to="/">
               <i className="fas fa-arrow-left mr-2"></i> Continue Shopping
-            </a>
+            </Link>
           </div>
         </div>
       </div>

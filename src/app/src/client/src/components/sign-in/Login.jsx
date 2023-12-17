@@ -2,7 +2,7 @@
 import { useState } from 'react';
 
 // ** Next Imports
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
@@ -176,9 +176,9 @@ const LoginPage = () => {
                 New on our platform?
               </Typography>
               <Typography variant="body2">
-                <a href="/sign-up">
+                <Link to="/sign-up">
                   <LinkStyled>Create an account</LinkStyled>
-                </a>
+                </Link>
               </Typography>
             </Box>
             <Box

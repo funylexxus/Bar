@@ -1,6 +1,6 @@
 import './App.css';
 import Home from './components/Home';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap';
 import RegisterPage from './components/register/Register';
