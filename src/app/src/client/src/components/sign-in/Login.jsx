@@ -61,12 +61,15 @@ const LoginPage = () => {
 
   const login = async () => {
     try {
-      const res = await axios.get('http://localhost:3000/auth/login', {
-        params: {
-          email: values.email,
-          password: values.password,
+      const res = await axios.get(
+        `${process.env.REACT_APP_API_URL}/auth/login`,
+        {
+          params: {
+            email: values.email,
+            password: values.password,
+          },
         },
-      });
+      );
       console.log(res);
       const token = res.data.token;
 
