@@ -23,7 +23,18 @@ export class DrinkController {
 
 	@Get()
 	@UseGuards(AuthGuard())
-	getAll(@Query() query): Promise<any> {
+	getAll(
+		@Query() query,
+	): Promise<{
+		drinks: Drink[];
+		pagination: {
+			totalCount: number;
+			currentPage: number;
+			itemsPerPage: number;
+			sortField: string;
+			sortOrder: string;
+		};
+	}> {
 		return this.drinkService.findAll(query);
 	}
 
