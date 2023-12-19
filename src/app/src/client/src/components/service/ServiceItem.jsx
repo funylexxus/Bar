@@ -1,4 +1,5 @@
 import React from 'react';
+import '../service/Service.css';
 
 export const ServiceItem = ({
   delay,

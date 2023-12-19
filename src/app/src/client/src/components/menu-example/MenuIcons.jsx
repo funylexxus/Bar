@@ -5,7 +5,6 @@ export const MenuIcons = (props) => {
   return (
     <li className="nav-item">
       <Link
-        passHref
         className={props.linkClassName}
         data-bs-toggle="pill"
         href={props.tabName}

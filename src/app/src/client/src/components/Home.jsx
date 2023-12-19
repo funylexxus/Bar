@@ -1,6 +1,6 @@
 import './Home.css';
 import Service from './service/Service';
-import Navbar from './navbar/Navbar';
+import NavbarPage from './navbar/NavbarPage';
 import About from './about-us/About';
 import Menu from './menu-example/Menu';
 import Chefs from './chefs/Chefs';
@@ -16,7 +16,7 @@ function Home() {
             </div> */}
 
       {/* <div className="container-xxl position-relative p-0"> */}
-      <Navbar />
+      <NavbarPage />
       <Service />
       <About />
       <Menu />
