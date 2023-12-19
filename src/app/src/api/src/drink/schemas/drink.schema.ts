@@ -15,6 +15,9 @@ export class Drink {
 
 	@Prop()
 	volume: number;
+
+	@Prop()
+	imgUrl: string;
 }
 
 export const DrinkSchema = SchemaFactory.createForClass(Drink);
