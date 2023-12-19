@@ -2,8 +2,8 @@
 import { useState } from 'react';
 
 // ** Next Imports
-import { Link, useNavigate } from 'react-router-dom';
-import axios, { getAdapter } from 'axios';
+import { useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
 import Cookies from 'js-cookie';
 
 // ** MUI Components
@@ -179,9 +179,9 @@ const LoginPage = () => {
                 New on our platform?
               </Typography>
               <Typography variant="body2">
-                <a href="/sign-up">
+                <Link to="/sign-up">
                   <LinkStyled>Create an account</LinkStyled>
-                </a>
+                </Link>
               </Typography>
             </Box>
             <Box

@@ -8,6 +8,7 @@ import {
 	Post,
 	Query,
 	UploadedFile,
+	Res,
 	UseGuards,
 	UseInterceptors,
 } from '@nestjs/common';
@@ -73,5 +74,10 @@ export class DrinkController {
 	@UseInterceptors(FileInterceptor('file'))
 	uploadFile(@UploadedFile() file: Express.Multer.File) {
 		return this.drinkService.uploadFile(file);
+	}
+
+	@Post('export')
+	exportCsv(@Res() res: Response) {
+		return this.drinkService.exportCsv(res);
 	}
 }

@@ -8,6 +8,7 @@ import { AboutImage } from './AboutImage';
 import { AboutImageEnd } from './AboutImageEnd';
 import { AboutInfo } from './AboutInfo';
 import { AboutDescr } from './AboutDescr';
+import { Link } from 'react-router-dom';
 
 function About() {
   return (
@@ -33,7 +34,7 @@ function About() {
               About Us
             </h5>
             <h1 className="mb-4">
-              Welcome to <i className="fa fa-utensils text-primary me-2"></i>
+              Welcome to <i className="fa fa-beer text-primary me-2"></i>
               Bar
             </h1>
             <AboutDescr
@@ -50,20 +51,20 @@ function About() {
 
             <div className="row g-4 mb-4">
               <AboutInfo
-                number={'15'}
+                number={'5'}
                 text={'Years of'}
                 secondText={'Experience'}
               />
 
               <AboutInfo
-                number={'50'}
+                number={'20'}
                 text={'Popular'}
-                secondText={'Master Chefs'}
+                secondText={'Alcohol Drinks'}
               />
             </div>
-            <a className="btn btn-primary py-3 px-5 mt-2" href="">
+            <Link passHref className="btn btn-primary py-3 px-5 mt-2" href="">
               Read More
-            </a>
+            </Link>
           </div>
         </div>
       </div>
