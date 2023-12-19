@@ -1,41 +1,61 @@
+:root {
+  --primary: #fea116;
+  --light: #f1f8ff;
+  --dark: #0f172b;
+}
+
+.ff-secondary {
+  font-family: 'Pacifico', cursive;
+}
+
+.fw-medium {
+  font-weight: 600 !important;
+}
+
+.fw-semi-bold {
+  font-weight: 700 !important;
+}
+
+.back-to-top {
+  position: fixed;
+  display: none;
+  right: 45px;
+  bottom: 45px;
+  z-index: 99;
+}
+
 .section-title {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 
 .section-title::before {
-    position: absolute;
-    content: "";
-    width: 45px;
-    height: 2px;
-    top: 50%;
-    left: -55px;
-    margin-top: -1px;
-    background: var(--primary);
+  position: absolute;
+  content: '';
+  width: 45px;
+  height: 2px;
+  top: 50%;
+  left: -55px;
+  margin-top: -1px;
+  background: var(--primary);
 }
 
 .section-title::after {
-    position: absolute;
-    content: "";
-    width: 45px;
-    height: 2px;
-    top: 50%;
-    right: -55px;
-    margin-top: -1px;
-    background: var(--primary);
+  position: absolute;
+  content: '';
+  width: 45px;
+  height: 2px;
+  top: 50%;
+  right: -55px;
+  margin-top: -1px;
+  background: var(--primary);
 }
 
 .section-title.text-start::before,
 .section-title.text-end::after {
-    display: none;
+  display: none;
 }
-
-
-
-
-
 
 .nav-pills .nav-item .active {
-    border-bottom: 2px solid var(--primary);
+  border-bottom: 2px solid var(--primary);
 }
-

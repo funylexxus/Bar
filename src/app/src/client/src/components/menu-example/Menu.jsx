@@ -10,9 +10,6 @@ import menu_7 from '../img/menu-7.jpg';
 import menu_8 from '../img/menu-8.jpg';
 import { MenuIcons } from './MenuIcons';
 import { MenuItem } from './MenuItem';
-import { MenuTab } from './MenuTab';
-import '@fortawesome/fontawesome-svg-core';
-import '@fortawesome/free-solid-svg-icons';
 
 function Menu() {
   return (
@@ -119,7 +116,6 @@ function Menu() {
                 />
               </div>
             </div>
-            {/*   </MenuTab> */}
 
             <div id="tab-2" className="tab-pane fade show p-0">
               <div className="row g-4">

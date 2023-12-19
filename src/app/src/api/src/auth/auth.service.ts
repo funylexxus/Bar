@@ -67,7 +67,7 @@ export class AuthService {
 		const userIsNotAdmin = !user.isAdmin;
 
 		if (isRequestFromAdmin && userIsNotAdmin) {
-			throw new UnauthorizedException('Acess permission denied');
+			throw new UnauthorizedException('Access permission denied');
 		}
 
 		const token = this.jwtService.sign({ id: user._id });

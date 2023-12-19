@@ -60,12 +60,15 @@ const RegisterPage = () => {
 
   const auth = async () => {
     try {
-      const res = await axios.post('http://localhost:3000/auth/signup', {
-        firstName: values.firstName,
-        lastName: values.lastName,
-        email: values.email,
-        password: values.password,
-      });
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_URL}/auth/signup`,
+        {
+          firstName: values.firstName,
+          lastName: values.lastName,
+          email: values.email,
+          password: values.password,
+        },
+      );
 
       console.log(res);
       const token = res.data.token;
