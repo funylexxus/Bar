@@ -7,8 +7,10 @@ import {
 	Patch,
 	Post,
 	Query,
+	UploadedFile,
 	Res,
 	UseGuards,
+	UseInterceptors,
 } from '@nestjs/common';
 import { DrinkService } from './drink.service';
 import { Drink } from './schemas/drink.schema';
@@ -17,6 +19,7 @@ import { CreateDrinkDto, UpdateDrinkDto } from './dto';
 import { DeleteDrinksDto } from './dto/delete-drinks.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { GetDrinksDto } from './dto/get-drink.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('api/v1/drinks')
 export class DrinkController {
@@ -65,6 +68,12 @@ export class DrinkController {
 		@Body() deleteDrinksDto: DeleteDrinksDto,
 	): Promise<{ acknowledged; deletedCount }> {
 		return this.drinkService.deleteMany(deleteDrinksDto);
+	}
+
+	@Post('upload')
+	@UseInterceptors(FileInterceptor('file'))
+	uploadFile(@UploadedFile() file: Express.Multer.File) {
+		return this.drinkService.uploadFile(file);
 	}
 
 	@Post('export')

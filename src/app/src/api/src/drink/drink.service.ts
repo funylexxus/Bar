@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Drink } from './schemas/drink.schema';
 import { Model } from 'mongoose';
 import * as _ from 'lodash';
+import * as AWS from 'aws-sdk';
 import { Parser } from '@json2csv/plainjs';
 import { CreateDrinkDto } from './dto/create-drink.dto';
 import { UpdateDrinkDto } from './dto/update-drink.dto';
@@ -15,6 +16,11 @@ const SORT_ORDER = {
 
 @Injectable()
 export class DrinkService {
+	AWS_S3_BUCKET = 'dat-vu-bar/drinks';
+	s3 = new AWS.S3({
+		accessKeyId: 'AKIA254P34RSZVY54TUK',
+		secretAccessKey: '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',
+	});
 	constructor(
 		@InjectModel(Drink.name)
 		private drinkModel: Model<Drink>,
@@ -104,6 +110,39 @@ export class DrinkService {
 	}: DeleteDrinksDto): Promise<{ acknowledged; deletedCount }> {
 		console.log('ids', ids);
 		return this.drinkModel.deleteMany({ _id: { $in: ids } });
+	}
+
+	async uploadFile(file) {
+		const { originalname } = file;
+
+		return await this.s3_upload(
+			file.buffer,
+			this.AWS_S3_BUCKET,
+			originalname,
+			file.mimetype,
+		);
+	}
+
+	async s3_upload(file, bucket, name, mimetype) {
+		const params = {
+			Bucket: bucket,
+			Key: String(name),
+			Body: file,
+			ACL: 'public-read',
+			ContentType: mimetype,
+			ContentDisposition: 'inline',
+			CreateBucketConfiguration: {
+				LocationConstraint: 'eu-central-1',
+			},
+		};
+
+		try {
+			const s3Response = await this.s3.upload(params).promise();
+			console.log('s3Response', s3Response);
+			return s3Response;
+		} catch (e) {
+			console.log(e);
+		}
 	}
 
 	async exportCsv(res) {

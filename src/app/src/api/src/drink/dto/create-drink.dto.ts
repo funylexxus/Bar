@@ -16,4 +16,6 @@ export class CreateDrinkDto {
 	@IsNotEmpty()
 	@IsDecimal()
 	readonly volume: number;
+
+	readonly imgUrl: string;
 }
