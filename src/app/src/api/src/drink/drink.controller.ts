@@ -7,6 +7,7 @@ import {
 	Patch,
 	Post,
 	Query,
+	Res,
 	UseGuards,
 } from '@nestjs/common';
 import { DrinkService } from './drink.service';
@@ -23,9 +24,7 @@ export class DrinkController {
 
 	@Get()
 	@UseGuards(AuthGuard())
-	getAll(
-		@Query() query,
-	): Promise<{
+	getAll(@Query() query): Promise<{
 		drinks: Drink[];
 		pagination: {
 			totalCount: number;
@@ -66,5 +65,10 @@ export class DrinkController {
 		@Body() deleteDrinksDto: DeleteDrinksDto,
 	): Promise<{ acknowledged; deletedCount }> {
 		return this.drinkService.deleteMany(deleteDrinksDto);
+	}
+
+	@Post('export')
+	exportCsv(@Res() res: Response) {
+		return this.drinkService.exportCsv(res);
 	}
 }

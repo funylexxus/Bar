@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Drink } from './schemas/drink.schema';
 import { Model } from 'mongoose';
 import * as _ from 'lodash';
+import { Parser } from '@json2csv/plainjs';
 import { CreateDrinkDto } from './dto/create-drink.dto';
 import { UpdateDrinkDto } from './dto/update-drink.dto';
 import { DeleteDrinksDto } from './dto/delete-drinks.dto';
@@ -103,5 +104,24 @@ export class DrinkService {
 	}: DeleteDrinksDto): Promise<{ acknowledged; deletedCount }> {
 		console.log('ids', ids);
 		return this.drinkModel.deleteMany({ _id: { $in: ids } });
+	}
+
+	async exportCsv(res) {
+		const fields = [
+			{ label: 'Name', value: 'name' },
+			{ label: 'Description', value: 'description' },
+			{ label: 'Price', value: 'price' },
+			{ label: 'Volume', value: 'volume' },
+		];
+		const drinks = await this.drinkModel.find(
+			{},
+			{ _id: 0, name: 1, description: 1, price: 1, volume: 1 },
+		);
+		const parser = new Parser({ fields });
+		const csv = parser.parse(drinks);
+
+		res.header('Content-Type', 'text/csv');
+		res.attachment('drinks.csv');
+		return res.send(csv);
 	}
 }
