@@ -17,4 +17,5 @@ export class GetDrinksDto {
 
 	readonly sortFiend: string;
 	readonly sortOrder: string;
+	readonly keyword: string;
 }

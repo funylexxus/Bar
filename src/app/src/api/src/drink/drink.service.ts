@@ -24,25 +24,21 @@ export class DrinkService {
 		itemsPerPage = 2,
 		sortField = 'name',
 		sortOrder = 'asc',
-		...query
+		keyword,
 	}) {
 		const matchStage = { $or: [] };
 		const pipeline = [];
 
-		if (query.keyword) {
-			const escapedQuery = _.replace(
-				query.keyword,
-				/[.*+?^${}()|[\]\\]/g,
-				'\\$&',
-			);
-			const regex = { $regex: escapedQuery, $options: 'i' };
+		if (keyword) {
+			if (_.isNaN(Number(keyword))) {
+				const escapedQuery = _.replace(keyword, /[.*+?^${}()|[\]\\]/g, '\\$&');
+				const regex = { $regex: escapedQuery, $options: 'i' };
 
-			matchStage.$or.push(
-				{ name: regex },
-				{ description: regex },
-				{ volume: regex },
-				{ price: regex },
-			);
+				matchStage.$or.push({ name: regex }, { description: regex });
+			} else {
+				const regex = _.toNumber(keyword);
+				matchStage.$or.push({ volume: regex }, { price: regex });
+			}
 
 			pipeline.push({ $match: matchStage });
 		}
