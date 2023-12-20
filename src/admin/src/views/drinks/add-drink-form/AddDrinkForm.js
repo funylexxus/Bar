@@ -14,6 +14,7 @@ import Cookies from 'js-cookie'
 import { DrinksContext } from 'src/@core/context/drinksContext'
 import customAxios from 'src/utils/customAxios'
 import { ImgInput } from './ImgInput'
+import _ from 'lodash'
 
 const AddDrinkForm = props => {
   // ** States
@@ -122,6 +123,8 @@ const AddDrinkForm = props => {
         `${process.env.API_URL}/drinks`,
         {
           ...values.inputValues,
+          // price: 123123,
+          // volume: _.toNumber(values.inputValues.volume),
           imgUrl
         },
         {
@@ -137,7 +140,7 @@ const AddDrinkForm = props => {
       })
     } catch (error) {
       console.log('error', error)
-      setHelperText(error.response.data.message)
+      setHelperText(error?.response?.data?.message)
     }
   }
 
@@ -189,7 +192,7 @@ const AddDrinkForm = props => {
               <TextField
                 fullWidth
                 type='price'
-                label='Price'
+                label='Price $'
                 placeholder=''
                 error={!values.validation.price}
                 helperText={values.helperText.price}
@@ -203,7 +206,7 @@ const AddDrinkForm = props => {
               <TextField
                 fullWidth
                 type='volume'
-                label='Volume'
+                label='Volume l'
                 placeholder=''
                 error={!values.validation.volume}
                 helperText={values.helperText.volume}

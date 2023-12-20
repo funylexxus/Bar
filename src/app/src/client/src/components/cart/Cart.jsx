@@ -1,161 +1,96 @@
-import React from 'react';
-import './Cart.css';
-import { Link } from 'react-router-dom';
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+import Button from '@mui/material/Button';
+import List from '@mui/material/List';
+import Divider from '@mui/material/Divider';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import DrinksList from '../drinks/DrinksList';
+import { Card, CardContent, Typography } from '@mui/material';
+import { useContext } from 'react';
+import { CartContext, orderStatuses } from '../../context/cartContext';
+import { CardFooter, CardHeader } from 'react-bootstrap';
+import { CartForm } from './CartForm';
 
-function Cart() {
+export default function Cart() {
+  const [state, setState] = React.useState({
+    top: false,
+    left: false,
+    bottom: false,
+    right: false,
+  });
+  const [order, setOrder] = useContext(CartContext);
+
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (
+      event &&
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
+      return;
+    }
+
+    setState({ ...state, [anchor]: open });
+  };
+
+  const anchor = 'right';
+
   return (
-    <section className="pt-5 pb-5">
-      <div className="container">
-        <div className="row w-100">
-          <div className="col-lg-12 col-md-12 col-12">
-            <h3 className="display-5 mb-2 text-center">Shopping Cart</h3>
-            <p className="mb-5 text-center">
-              <i className="text-info font-weight-bold">3</i> items in your cart
-            </p>
-            <table
-              id="shoppingCart"
-              className="table table-condensed table-responsive"
+    <div>
+      <React.Fragment key={anchor}>
+        <ShoppingCartOutlinedIcon onClick={toggleDrawer(anchor, true)}>
+          {anchor}
+        </ShoppingCartOutlinedIcon>
+        <SwipeableDrawer
+          anchor={anchor}
+          open={state[anchor]}
+          onClose={toggleDrawer(anchor, false)}
+          onOpen={toggleDrawer(anchor, true)}
+        >
+          <Box className="content-center">
+            <Card
+              sx={{ width: 400 }}
+              role="presentation"
+              // onClick={toggleDrawer(anchor, false)}
+              // onKeyDown={toggleDrawer(anchor, false)}
             >
-              <thead>
-                <tr>
-                  <th style={{ width: '60%' }}>Product</th>
-                  <th style={{ width: '12%' }}>Price</th>
-                  <th style={{ width: '10%' }}>Quantity</th>
-                  <th style={{ width: '16%' }}></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td data-th="Product">
-                    <div className="row">
-                      <div className="col-md-3 text-left">
-                        <img
-                          src="https://via.placeholder.com/250x250/5fa9f8/ffffff"
-                          alt=""
-                          className="img-fluid d-none d-md-block rounded mb-2 shadow "
-                        />
-                      </div>
-                      <div className="col-md-9 text-left mt-sm-2">
-                        <h4>Product Name</h4>
-                        <p className="font-weight-light">Brand &amp; Name</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td data-th="Price">$49.00</td>
-                  <td data-th="Quantity">
-                    <input
-                      type="number"
-                      className="form-control form-control-lg text-center"
-                      value="1"
-                    />
-                  </td>
-                  <td className="actions" data-th="">
-                    <div className="text-right">
-                      <button className="btn btn-white border-secondary bg-white btn-md mb-2">
-                        <i className="fas fa-sync"></i>
-                      </button>
-                      <button className="btn btn-white border-secondary bg-white btn-md mb-2">
-                        <i className="fas fa-trash"></i>
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td data-th="Product">
-                    <div className="row">
-                      <div className="col-md-3 text-left">
-                        <img
-                          src="https://via.placeholder.com/250x250/5fa9f8/ffffff"
-                          alt=""
-                          className="img-fluid d-none d-md-block rounded mb-2 shadow "
-                        />
-                      </div>
-                      <div className="col-md-9 text-left mt-sm-2">
-                        <h4>Product Name</h4>
-                        <p className="font-weight-light">Brand &amp; Name</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td data-th="Price">$49.00</td>
-                  <td data-th="Quantity">
-                    <input
-                      type="number"
-                      className="form-control form-control-lg text-center"
-                      value="1"
-                    />
-                  </td>
-                  <td className="actions" data-th="">
-                    <div className="text-right">
-                      <button className="btn btn-white border-secondary bg-white btn-md mb-2">
-                        <i className="fas fa-sync"></i>
-                      </button>
-                      <button className="btn btn-white border-secondary bg-white btn-md mb-2">
-                        <i className="fas fa-trash"></i>
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td data-th="Product">
-                    <div className="row">
-                      <div className="col-md-3 text-left">
-                        <img
-                          src="https://via.placeholder.com/250x250/5fa9f8/ffffff"
-                          alt=""
-                          className="img-fluid d-none d-md-block rounded mb-2 shadow "
-                        />
-                      </div>
-                      <div className="col-md-9 text-left mt-sm-2">
-                        <h4>Product Name</h4>
-                        <p className="font-weight-light">Brand &amp; Name</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td data-th="Price">$49.00</td>
-                  <td data-th="Quantity">
-                    <input
-                      type="number"
-                      className="form-control form-control-lg text-center"
-                      value="1"
-                    />
-                  </td>
-                  <td className="actions" data-th="">
-                    <div className="text-right">
-                      <button className="btn btn-white border-secondary bg-white btn-md mb-2">
-                        <i className="fas fa-sync"></i>
-                      </button>
-                      <button className="btn btn-white border-secondary bg-white btn-md mb-2">
-                        <i className="fas fa-trash"></i>
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <div className="float-right text-right">
-              <h4>Subtotal:</h4>
-              <h1>$99.00</h1>
-            </div>
-          </div>
-        </div>
-        <div className="row mt-4 d-flex align-items-center">
-          <div className="col-sm-6 order-md-2 text-right">
-            <Link
-              to="catalog.html"
-              className="btn btn-primary mb-4 btn-lg pl-5 pr-5"
-            >
-              Checkout
-            </Link>
-          </div>
-          <div className="col-sm-6 mb-3 mb-m-1 order-md-1 text-md-left">
-            <Link to="/">
-              <i className="fas fa-arrow-left mr-2"></i> Continue Shopping
-            </Link>
-          </div>
-        </div>
-      </div>
-    </section>
+              <CardHeader>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  mx="60px"
+                  sx={{ textAlign: 'center', marginTop: '1rem' }}
+                >
+                  Cart
+                </Typography>
+              </CardHeader>
+              {order.status === orderStatuses.inProgress ? (
+                <CardContent>
+                  <CartForm />
+                  <List style={{ maxHeight: '100%', overflow: 'auto' }}>
+                    <DrinksList drinks={order.drinks} />
+                  </List>
+                </CardContent>
+              ) : (
+                <Typography
+                  gutterBottom
+                  variant="h4"
+                  mx="60px"
+                  sx={{ maxWidth: 300, textAlign: 'center', marginTop: '1rem' }}
+                >
+                  Order Successfully Submited!
+                </Typography>
+              )}
+            </Card>
+          </Box>
+        </SwipeableDrawer>
+      </React.Fragment>
+    </div>
   );
 }
-
-export default Cart;
