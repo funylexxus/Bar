@@ -1,7 +1,7 @@
 import React from 'react';
 import './Navbar.css';
-import Cart from '../cart/Cart';
 import { Link } from 'react-router-dom';
+import Cart from '../cart/Cart';
 
 function Navbar() {
   return (
@@ -37,6 +37,9 @@ function Navbar() {
             <Link to="/menu" className="nav-item nav-link">
               Menu
             </Link>
+            <Link to="/drinks" className="nav-item nav-link">
+              Drinks
+            </Link>
             <Link to="/team" className="nav-item nav-link">
               Our Team
             </Link>
@@ -50,15 +53,7 @@ function Navbar() {
           <Link to="/sign-up" className="btn btn-primary mx-3 py-2 px-4">
             Sign Up
           </Link>
-          <Link to="/cart" className="fa fa-shopping-cart text-primary">
-            <Link to="/cart" style={{ display: 'none' }}>
-              <Cart />
-            </Link>
-          </Link>
-
-          <Link to="/menutest" className="nav-item nav-link">
-            Test Menu
-          </Link>
+          <Cart />
         </div>
       </nav>
     </div>

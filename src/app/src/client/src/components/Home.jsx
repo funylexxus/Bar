@@ -5,6 +5,8 @@ import About from './about-us/About';
 import Menu from './menu-example/Menu';
 import Chefs from './chefs/Chefs';
 import Footer from './footer/Footer';
+import DrinksList from './drinks/DrinksList';
+import { CartProvider } from '../context/cartContext';
 
 function Home() {
   return (
@@ -16,12 +18,15 @@ function Home() {
             </div> */}
 
       {/* <div className="container-xxl position-relative p-0"> */}
-      <NavbarPage />
-      <Service />
-      <About />
-      <Menu />
-      <Chefs />
-      <Footer />
+      <CartProvider>
+        <NavbarPage />
+        <Service />
+        <About />
+        <Menu />
+        <DrinksList />
+        <Chefs />
+        <Footer />
+      </CartProvider>
     </div>
   );
 }

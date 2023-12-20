@@ -13,6 +13,8 @@ import ServicePage from './components/service/ServicePage';
 import MenuPage from './components/menu-example/MenuPage';
 import Team from './components/chefs/Team';
 import MenuTestPage from './components/menu-example/MenuTestPage';
+import Drinks from './components/drinks';
+import { CartProvider } from './context/cartContext';
 
 function App() {
   return (
@@ -26,6 +28,14 @@ function App() {
           <Route path="/about" element={<AboutPage />}></Route>
           <Route path="/service" element={<ServicePage />}></Route>
           <Route path="/menu" element={<MenuPage />}></Route>
+          <Route
+            path="/drinks"
+            element={
+              <CartProvider>
+                <Drinks />
+              </CartProvider>
+            }
+          ></Route>
           <Route path="/team" element={<Team />}></Route>
           <Route path="/menutest" element={<MenuTestPage />}></Route>
         </Routes>

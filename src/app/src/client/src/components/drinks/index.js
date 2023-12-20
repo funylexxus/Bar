@@ -1,17 +1,13 @@
-import './Menu.css';
-import React from 'react';
-import Menu from './Menu';
 import Footer from '../footer/Footer';
 import Navbar from '../navbar/Navbar';
+import { DrinksContent } from './DrinksContent';
 
-function MenuPage() {
+export default function Drinks() {
   return (
     <div className="container-xxl bg-white p-0">
       <Navbar />
-      <Menu />
+      <DrinksContent />
       <Footer />
     </div>
   );
 }
-
-export default MenuPage;
