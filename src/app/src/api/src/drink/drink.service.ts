@@ -18,8 +18,8 @@ const SORT_ORDER = {
 export class DrinkService {
 	AWS_S3_BUCKET = 'dat-vu-bar/drinks';
 	s3 = new AWS.S3({
-		accessKeyId: 'AKIA254P34RSZVY54TUK',
-		secretAccessKey: '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',
+		accessKeyId: process.env.ACCESS_KEY_ID,
+		secretAccessKey: process.env.SECRET_ACCESS_KEY,
 	});
 	constructor(
 		@InjectModel(Drink.name)
