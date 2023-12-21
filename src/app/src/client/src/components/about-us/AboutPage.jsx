@@ -10,7 +10,7 @@ function AboutPage() {
   return (
     <div className="container-xxl bg-white p-0">
       <Navbar />
-      <NavbarAdd pageName={'About'} pageTitle={'About us'} />
+      {/* <NavbarAdd pageName={'About'} pageTitle={'About us'} /> */}
       <About />
       <Chefs />
       <Footer />

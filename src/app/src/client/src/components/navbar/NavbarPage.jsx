@@ -3,6 +3,7 @@ import './Navbar.css';
 import heroImg from '../img/hero.png';
 import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
+import jack_daniels from '../img/jack_daniels.jpg';
 
 function NavbarPage() {
   return (
@@ -19,8 +20,12 @@ function NavbarPage() {
                 Delicious Drink
               </h1>
               <p className="text-white animated slideInLeft mb-4 pb-2">
-                Our Bar has stuff with rich experience and various drinks
-                options to choose from
+                Indulge in our extensive selection of handcrafted cocktails,
+                expertly mixed by our talented mixologists who are passionate
+                about their craft. From classic favorites to innovative
+                creations, our bar offers a drink for every palate. Sip on a
+                perfectly balanced Old Fashioned or savor the refreshing notes
+                of a signature botanical-infused gin cocktail.
               </p>
               <Link
                 to="/cart"
