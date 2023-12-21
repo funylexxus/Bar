@@ -74,4 +74,12 @@ export class AuthService {
 
 		return { token };
 	}
+
+	getCustomersNumber() {
+		return this.userModel
+			.find({
+				$or: [{ isAdmin: { $exists: false } }, { isAdmin: { $eq: false } }],
+			})
+			.countDocuments();
+	}
 }

@@ -4,6 +4,10 @@ import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
 import { styled, useTheme } from '@mui/material/styles'
+import { useEffect, useState } from 'react'
+import customAxios from 'src/utils/customAxios'
+import _ from 'lodash'
+import moment from 'moment'
 
 // Styled component for the triangle shaped background image
 const TriangleImg = styled('img')({
@@ -24,22 +28,49 @@ const TrophyImg = styled('img')({
 const Trophy = () => {
   // ** Hook
   const theme = useTheme()
-  const imageSrc = theme.palette.mode === 'light' ? 'triangle-light.png' : 'triangle-dark.png'
+  const imageSrc =
+    theme.palette.mode === 'light' ? 'triangle-light.png' : 'triangle-dark.png'
+
+  const [revenue, setRevenue] = useState(0)
+
+  useEffect(async () => {
+    try {
+      const { data: orders } = await customAxios.get(
+        `${process.env.API_URL}/orders`
+      )
+      const startOfMonth = moment().startOf('month').format('YYYY-MM-DD hh:mm')
+      const endOfMonth = moment().endOf('month').format('YYYY-MM-DD hh:mm')
+      const currentMonthOrders = _.filter(orders, order =>
+        moment(order.createdAt).isBetween(startOfMonth, endOfMonth)
+      )
+      const revenue = _.reduce(
+        currentMonthOrders,
+        (sum, order) => sum + order.totalCount,
+        0
+      )
+      setRevenue(_.round(revenue, 2))
+    } catch (error) {
+      console.log(error)
+    }
+  }, [])
 
   return (
     <Card sx={{ position: 'relative' }}>
       <CardContent>
-        <Typography variant='h6'>Congratulations John! 🥳</Typography>
-        <Typography variant='body2' sx={{ letterSpacing: '0.25px' }}>
+        <Typography variant='h6'>Congratulations! 🥳</Typography>
+        {/* <Typography variant='body2' sx={{ letterSpacing: '0.25px' }}>
           Best seller of the month
-        </Typography>
+        </Typography> */}
         <Typography variant='h5' sx={{ my: 4, color: 'primary.main' }}>
-          $42.8k
+          ${revenue}
         </Typography>
-        <Button size='small' variant='contained'>
+        {/* <Button size='small' variant='contained'>
           View Sales
-        </Button>
-        <TriangleImg alt='triangle background' src={`/images/misc/${imageSrc}`} />
+        </Button> */}
+        <TriangleImg
+          alt='triangle background'
+          src={`/images/misc/${imageSrc}`}
+        />
         <TrophyImg alt='trophy' src='/images/misc/trophy.png' />
       </CardContent>
     </Card>

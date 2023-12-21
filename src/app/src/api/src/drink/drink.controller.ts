@@ -40,6 +40,11 @@ export class DrinkController {
 		return this.drinkService.findAll(query);
 	}
 
+	@Get('/count')
+	count() {
+		return this.drinkService.getDrinksNumber();
+	}
+
 	@Get(':id')
 	getById(
 		@Param('id', ValidateMongoId)
