@@ -22,7 +22,7 @@ function Home() {
         <NavbarPage />
         <Service />
         <About />
-        <Menu />
+        {/* <Menu /> */}
         <DrinksList />
         <Chefs />
         <Footer />

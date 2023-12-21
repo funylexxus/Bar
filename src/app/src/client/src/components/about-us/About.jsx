@@ -9,6 +9,13 @@ import { AboutImageEnd } from './AboutImageEnd';
 import { AboutInfo } from './AboutInfo';
 import { AboutDescr } from './AboutDescr';
 import { Link } from 'react-router-dom';
+import bar_img4 from '../img/bar_img4.jpg';
+import bar_img3 from '../img/bar_img3.jpg';
+import bar_img2 from '../img/bar_img2.jpg';
+import bar_img1 from '../img/bar_img1.jpg';
+import bar_background2 from '../img/bar_background2.jpg';
+import bar_background3 from '../img/bar_background3.jpg';
+import bar_background1 from '../img/bar_background.jpg';
 
 function About() {
   return (
@@ -17,16 +24,25 @@ function About() {
         <div className="row g-5 align-items-center">
           <div className="col-lg-6">
             <div className="row g-3">
-              <AboutImage width={'w-100'} delay={'0.1'} src={about_1} />
+              <AboutImage
+                width={'w-100'}
+                delay={'0.1'}
+                src={bar_img4}
+                style={{ marginTop: '50%' }}
+              />
               <AboutImage
                 width={'w-75'}
                 delay={'0.3'}
-                src={about_2}
-                style={{ marginTop: '25%' }}
+                src={bar_img3}
+                style={{ marginTop: '57%' }}
               />
 
-              <AboutImageEnd width={'w-75'} delay={'0.5'} src={about_3} />
-              <AboutImageEnd width={'w-100'} delay={'0.7'} src={about_4} />
+              <AboutImageEnd width={'w-75'} delay={'0.5'} src={bar_img2} />
+              <AboutImageEnd
+                width={'w-100'}
+                delay={'0.7'}
+                src={bar_background2}
+              />
             </div>
           </div>
           <div className="col-lg-6">
@@ -39,13 +55,13 @@ function About() {
             </h1>
             <AboutDescr
               descr={
-                'Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos erat ipsum et lorem et sit, sed stet lorem sit.'
+                'In our Bar you will get pleasant experience by spending time with your friend or alone, also from our stuff, which has rich and long experience.'
               }
             />
 
             <AboutDescr
               descr={
-                'Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet.'
+                'Every year we reach new heights, get new customers and also improving our experience with our customers.'
               }
             />
 
@@ -62,7 +78,11 @@ function About() {
                 secondText={'Alcohol Drinks'}
               />
             </div>
-            <Link passHref className="btn btn-primary py-3 px-5 mt-2" href="">
+            <Link
+              to="/about"
+              className="btn btn-primary py-3 px-5 mt-2"
+              href=""
+            >
               Read More
             </Link>
           </div>
