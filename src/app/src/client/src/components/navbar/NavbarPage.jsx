@@ -16,18 +16,17 @@ function NavbarPage() {
               <h1 className="display-3 text-white animated slideInLeft">
                 Enjoy Our
                 <br />
-                Delicious Meal
+                Delicious Drink
               </h1>
               <p className="text-white animated slideInLeft mb-4 pb-2">
-                Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit.
-                Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit,
-                sed stet lorem sit clita duo justo magna dolore erat amet
+                Our Bar has stuff with rich experience and various drinks
+                options to choose from
               </p>
               <Link
-                to=""
+                to="/cart"
                 className="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft"
               >
-                Book A Table
+                Order A Drink
               </Link>
             </div>
             <div className="col-lg-6 text-center text-lg-end overflow-hidden">
