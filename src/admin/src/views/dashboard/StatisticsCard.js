@@ -14,28 +14,33 @@ import CurrencyUsd from 'mdi-material-ui/CurrencyUsd'
 import DotsVertical from 'mdi-material-ui/DotsVertical'
 import CellphoneLink from 'mdi-material-ui/CellphoneLink'
 import AccountOutline from 'mdi-material-ui/AccountOutline'
+import { useEffect, useState } from 'react'
+import customAxios from 'src/utils/customAxios'
+import _ from 'lodash'
+import moment from 'moment'
+import { Try } from '@mui/icons-material'
 
-const salesData = [
+const getSalesData = ({ sales, customers, products, revenue }) => [
   {
-    stats: '245k',
+    stats: sales,
     title: 'Sales',
     color: 'primary',
     icon: <TrendingUp sx={{ fontSize: '1.75rem' }} />
   },
   {
-    stats: '12.5k',
+    stats: customers,
     title: 'Customers',
     color: 'success',
     icon: <AccountOutline sx={{ fontSize: '1.75rem' }} />
   },
   {
-    stats: '1.54k',
+    stats: products,
     color: 'warning',
     title: 'Products',
     icon: <CellphoneLink sx={{ fontSize: '1.75rem' }} />
   },
   {
-    stats: '$88k',
+    stats: revenue,
     color: 'info',
     title: 'Revenue',
     icon: <CurrencyUsd sx={{ fontSize: '1.75rem' }} />
@@ -43,6 +48,76 @@ const salesData = [
 ]
 
 const renderStats = () => {
+  const [salesData, setSalesData] = useState([
+    {
+      stats: 0,
+      title: 'Sales',
+      color: 'primary',
+      icon: <TrendingUp sx={{ fontSize: '1.75rem' }} />
+    },
+    {
+      stats: 0,
+      title: 'Customers',
+      color: 'success',
+      icon: <AccountOutline sx={{ fontSize: '1.75rem' }} />
+    },
+    {
+      stats: 0,
+      color: 'warning',
+      title: 'Products',
+      icon: <CellphoneLink sx={{ fontSize: '1.75rem' }} />
+    },
+    {
+      stats: '$0k',
+      color: 'info',
+      title: 'Revenue',
+      icon: <CurrencyUsd sx={{ fontSize: '1.75rem' }} />
+    }
+  ])
+
+  const calculateOrderStatistics = (orders, usersNumber, drinksNumber) => {
+    const sales = orders.length
+    const startOfMonth = moment().startOf('month').format('YYYY-MM-DD hh:mm')
+    const endOfMonth = moment().endOf('month').format('YYYY-MM-DD hh:mm')
+    const currentMonthOrders = _.filter(orders, order =>
+      moment(order.createdAt).isBetween(startOfMonth, endOfMonth)
+    )
+    const revenue = _.reduce(
+      currentMonthOrders,
+      (sum, order) => sum + order.totalCount,
+      0
+    )
+    return {
+      sales,
+      customers: usersNumber,
+      products: drinksNumber,
+      revenue: _.round(revenue, 2)
+    }
+  }
+
+  useEffect(async () => {
+    try {
+      const { data: orders } = await customAxios.get(
+        `${process.env.API_URL}/orders`
+      )
+      const { data: usersNumber } = await customAxios.get(
+        `${process.env.API_URL}/auth/customers-number`
+      )
+      const { data: drinksNumber } = await customAxios.get(
+        `${process.env.API_URL}/drinks/count`
+      )
+      const orderStatistics = calculateOrderStatistics(
+        orders,
+        usersNumber,
+        drinksNumber
+      )
+
+      setSalesData(getSalesData(orderStatistics))
+    } catch (error) {
+      console.log(error)
+    }
+  }, [])
+
   return salesData.map((item, index) => (
     <Grid item xs={12} sm={3} key={index}>
       <Box key={index} sx={{ display: 'flex', alignItems: 'center' }}>
@@ -69,19 +144,80 @@ const renderStats = () => {
 }
 
 const StatisticsCard = () => {
+  const [diff, setDiff] = useState(0)
+
+  const getCurrentMonthRevenue = orders => {
+    const startOfYear = moment().startOf('month').format('YYYY-MM-DD hh:mm')
+    const endOfYear = moment().endOf('month').format('YYYY-MM-DD hh:mm')
+    const currentMonthOrders = _.filter(orders, order =>
+      moment(order.createdAt).isBetween(startOfYear, endOfYear)
+    )
+    const revenue = _.reduce(
+      currentMonthOrders,
+      (sum, order) => sum + order.totalCount,
+      0
+    )
+
+    return revenue
+  }
+
+  const getPreviousMonthRevenue = orders => {
+    const startOfYear = moment()
+      .startOf('month')
+      .subtract(1, 'month')
+      .format('YYYY-MM-DD hh:mm')
+    const endOfYear = moment()
+      .endOf('month')
+      .subtract(1, 'month')
+      .format('YYYY-MM-DD hh:mm')
+    const currentMonthOrders = _.filter(orders, order =>
+      moment(order.createdAt).isBetween(startOfYear, endOfYear)
+    )
+    const revenue = _.reduce(
+      currentMonthOrders,
+      (sum, order) => sum + order.totalCount,
+      0
+    )
+
+    return revenue
+  }
+  useEffect(async () => {
+    try {
+      const { data: orders } = await customAxios.get(
+        `${process.env.API_URL}/orders`
+      )
+      const currentMonthRevenue = getCurrentMonthRevenue(orders)
+      const previousMonthRevenue = getPreviousMonthRevenue(orders)
+      const diffV = _.round(
+        (1 - previousMonthRevenue / currentMonthRevenue) * 100
+      )
+
+      setDiff(diffV)
+    } catch (error) {
+      console.log(error)
+    }
+  }, [])
   return (
     <Card>
       <CardHeader
         title='Statistics Card'
         action={
-          <IconButton size='small' aria-label='settings' className='card-more-options' sx={{ color: 'text.secondary' }}>
+          <IconButton
+            size='small'
+            aria-label='settings'
+            className='card-more-options'
+            sx={{ color: 'text.secondary' }}
+          >
             <DotsVertical />
           </IconButton>
         }
         subheader={
           <Typography variant='body2'>
-            <Box component='span' sx={{ fontWeight: 600, color: 'text.primary' }}>
-              Total 48.5% growth
+            <Box
+              component='span'
+              sx={{ fontWeight: 600, color: 'text.primary' }}
+            >
+              Total {diff}% growth
             </Box>{' '}
             😎 this month
           </Typography>

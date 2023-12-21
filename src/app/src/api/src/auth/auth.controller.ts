@@ -22,4 +22,9 @@ export class AuthController {
 	login(@Query() loginDto: LoginDto, @Req() req): any {
 		return this.authServie.login(loginDto, req);
 	}
+
+	@Get('/customers-number')
+	getCustomersNumber() {
+		return this.authServie.getCustomersNumber();
+	}
 }

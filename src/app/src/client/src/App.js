@@ -18,29 +18,23 @@ import { CartProvider } from './context/cartContext';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/sign-up" element={<RegisterPage />}></Route>
-          <Route path="/sign-in" element={<LoginPage />}></Route>
-          <Route path="/cart" element={<Cart />}></Route>
-          <Route path="/about" element={<AboutPage />}></Route>
-          <Route path="/service" element={<ServicePage />}></Route>
-          <Route path="/menu" element={<MenuPage />}></Route>
-          <Route
-            path="/drinks"
-            element={
-              <CartProvider>
-                <Drinks />
-              </CartProvider>
-            }
-          ></Route>
-          <Route path="/team" element={<Team />}></Route>
-          <Route path="/menutest" element={<MenuTestPage />}></Route>
-        </Routes>
-      </header>
-    </div>
+    <CartProvider>
+      <div className="App">
+        <header className="App-header">
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/sign-up" element={<RegisterPage />}></Route>
+            <Route path="/sign-in" element={<LoginPage />}></Route>
+            <Route path="/about" element={<AboutPage />}></Route>
+            <Route path="/service" element={<ServicePage />}></Route>
+            <Route path="/menu" element={<MenuPage />}></Route>
+            <Route path="/drinks" element={<Drinks />}></Route>
+            <Route path="/team" element={<Team />}></Route>
+            <Route path="/menutest" element={<MenuTestPage />}></Route>
+          </Routes>
+        </header>
+      </div>
+    </CartProvider>
   );
 }
 

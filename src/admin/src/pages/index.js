@@ -40,7 +40,7 @@ const Dashboard = () => {
         </Grid>
         <Grid item xs={12} md={6} lg={4}>
           <Grid container spacing={6}>
-            <Grid item xs={6}>
+            {/* <Grid item xs={6}>
               <CardStatisticsVerticalComponent
                 stats='$25.6k'
                 icon={<Poll />}
@@ -60,8 +60,8 @@ const Dashboard = () => {
                 subtitle='Past Month'
                 icon={<CurrencyUsd />}
               />
-            </Grid>
-            <Grid item xs={6}>
+            </Grid> */}
+            {/* <Grid item xs={6}>
               <CardStatisticsVerticalComponent
                 stats='862'
                 trend='negative'
@@ -81,18 +81,18 @@ const Dashboard = () => {
                 title='Sales Queries'
                 icon={<HelpCircleOutline />}
               />
-            </Grid>
+            </Grid> */}
           </Grid>
         </Grid>
-        <Grid item xs={12} md={6} lg={4}>
+        {/* <Grid item xs={12} md={6} lg={4}>
           <SalesByCountries />
-        </Grid>
-        <Grid item xs={12} md={12} lg={8}>
+        </Grid> */}
+        {/* <Grid item xs={12} md={12} lg={8}>
           <DepositWithdraw />
-        </Grid>
-        <Grid item xs={12}>
+        </Grid> */}
+        {/* <Grid item xs={12}>
           <Table />
-        </Grid>
+        </Grid> */}
       </Grid>
     </ApexChartWrapper>
   )

@@ -84,6 +84,10 @@ export class DrinkService {
 		};
 	}
 
+	getDrinksNumber() {
+		return this.drinkModel.countDocuments();
+	}
+
 	async findById(id: string): Promise<Drink> {
 		const drink = await this.drinkModel.findById(id);
 

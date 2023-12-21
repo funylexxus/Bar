@@ -11,7 +11,11 @@ export class OrderService {
 		private orderModel: Model<Order>,
 	) {}
 
-	async create(createOrderDto: CreateOrderDto) {
+	findAll({ query = {} }) {
+		return this.orderModel.find({ ...query });
+	}
+
+	create(createOrderDto: CreateOrderDto) {
 		return this.orderModel.create(createOrderDto);
 	}
 }
