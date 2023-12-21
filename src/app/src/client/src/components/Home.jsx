@@ -18,13 +18,15 @@ function Home() {
             </div> */}
 
       {/* <div className="container-xxl position-relative p-0"> */}
-      <NavbarPage />
-      <Service />
-      <About />
-      <Menu />
-      <DrinksList />
-      <Chefs />
-      <Footer />
+      <CartProvider>
+        <NavbarPage />
+        <Service />
+        <About />
+        {/* <Menu /> */}
+        <DrinksList />
+        <Chefs />
+        <Footer />
+      </CartProvider>
     </div>
   );
 }

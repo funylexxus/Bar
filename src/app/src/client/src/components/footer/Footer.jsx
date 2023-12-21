@@ -14,19 +14,19 @@ function Footer() {
             <h4 className="section-title ff-secondary text-start text-primary fw-normal mb-4">
               Company
             </h4>
-            <Link to="" className="btn btn-link">
+            <Link to="/about" className="btn btn-link">
               About Us
             </Link>
             <Link to="" className="btn btn-link">
               Contact Us
             </Link>
-            <Link passHref className="btn btn-link" href="">
+            <Link to="/cart" className="btn btn-link" href="">
               Reservation
             </Link>
-            <Link passHref className="btn btn-link" href="">
+            <Link to="" className="btn btn-link" href="">
               Privacy Policy
             </Link>
-            <Link passHref className="btn btn-link" href="">
+            <Link to="" className="btn btn-link" href="">
               Terms & Condition
             </Link>
           </div>
@@ -36,16 +36,16 @@ function Footer() {
               Contact
             </h4>
             <p className="mb-2">
-              <i className="fa fa-map-marker-alt me-3"></i>123 Street, New York,
-              USA
+              <i className="fa fa-map-marker-alt me-3"></i>28 Gikalo Street,
+              Minsk, Belarus
             </p>
             <p className="mb-2">
-              <i className="fa fa-phone-alt me-3"></i>+012 345 67890
+              <i className="fa fa-phone-alt me-3"></i>+375 33 555 67 89
             </p>
             <p className="mb-2">
-              <i className="fa fa-envelope me-3"></i>info@example.com
+              <i className="fa fa-envelope me-3"></i>dekanatfitu@bsuir.by
             </p>
-            <div className="d-flex pt-2">
+            {/* <div className="d-flex pt-2">
               <Link
                 passHref
                 className="btn btn-outline-light btn-social"
@@ -74,7 +74,7 @@ function Footer() {
               >
                 <i className="fab fa-linkedin-in"></i>
               </Link>
-            </div>
+            </div> */}
           </div>
 
           <div className="col-lg-3 col-md-6">
@@ -82,17 +82,17 @@ function Footer() {
               Opening
             </h4>
             <h5 className="text-light fw-normal">Monday - Saturday</h5>
-            <p>09AM - 09PM</p>
+            <p>16.00 - 04.00</p>
             <h5 className="text-light fw-normal">Sunday</h5>
-            <p>10AM - 08PM</p>
+            <p>17.00 - 06.00</p>
           </div>
 
           <div className="col-lg-3 col-md-6">
             <h4 className="section-title ff-secondary text-start text-primary fw-normal mb-4">
               Newsletter
             </h4>
-            <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-            <div
+            <p>Did u know that this website is created using React?</p>
+            {/* <div
               className="position-relative mx-auto"
               style={{ maxWidth: '400px' }}
             >
@@ -107,12 +107,12 @@ function Footer() {
               >
                 SignUp
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
 
-      <div className="container">
+      {/* <div className="container">
         <div className="copyright">
           <div className="row">
             <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
@@ -136,7 +136,7 @@ function Footer() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

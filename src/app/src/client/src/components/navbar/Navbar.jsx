@@ -34,9 +34,9 @@ function Navbar() {
             <Link to="/service" className="nav-item nav-link">
               Service
             </Link>
-            <Link to="/menu" className="nav-item nav-link">
+            {/* <Link to="/menu" className="nav-item nav-link">
               Menu
-            </Link>
+            </Link> */}
             <Link to="/drinks" className="nav-item nav-link">
               Drinks
             </Link>

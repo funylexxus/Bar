@@ -12,7 +12,7 @@ export const ChefsInfo = (props) => {
         </div>
         <h5 className="mb-0">{props.chefName}</h5>
         <small>{props.chefDesignation}</small>
-        <div className="d-flex justify-content-center mt-3">
+        {/* <div className="d-flex justify-content-center mt-3">
           <a className="btn btn-square btn-primary mx-1" href="">
             <i className="fab fa-facebook-f"></i>
           </a>
@@ -22,7 +22,7 @@ export const ChefsInfo = (props) => {
           <a className="btn btn-square btn-primary mx-1" href="">
             <i className="fab fa-instagram"></i>
           </a>
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -9,7 +9,7 @@ function Team() {
   return (
     <div className="container-xxl bg-white p-0">
       <Navbar />
-      <NavbarAdd pageName={'Team'} pageTitle={'Team'} />
+      {/* <NavbarAdd pageName={'Team'} pageTitle={'Team'} /> */}
       <Chefs />
       <Footer />
     </div>

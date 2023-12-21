@@ -3,6 +3,7 @@ import './Navbar.css';
 import heroImg from '../img/hero.png';
 import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
+import jack_daniels from '../img/jack_daniels.jpg';
 
 function NavbarPage() {
   return (
@@ -16,18 +17,21 @@ function NavbarPage() {
               <h1 className="display-3 text-white animated slideInLeft">
                 Enjoy Our
                 <br />
-                Delicious Meal
+                Delicious Drink
               </h1>
               <p className="text-white animated slideInLeft mb-4 pb-2">
-                Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit.
-                Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit,
-                sed stet lorem sit clita duo justo magna dolore erat amet
+                Indulge in our extensive selection of handcrafted cocktails,
+                expertly mixed by our talented mixologists who are passionate
+                about their craft. From classic favorites to innovative
+                creations, our bar offers a drink for every palate. Sip on a
+                perfectly balanced Old Fashioned or savor the refreshing notes
+                of a signature botanical-infused gin cocktail.
               </p>
               <Link
-                to=""
+                to="/cart"
                 className="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft"
               >
-                Book A Table
+                Order A Drink
               </Link>
             </div>
             <div className="col-lg-6 text-center text-lg-end overflow-hidden">

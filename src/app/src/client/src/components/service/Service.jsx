@@ -12,16 +12,16 @@ function Service() {
             className={'fa fa-3x fa-user-tie text-primary mb-4'}
             serviceItemTitle={'Master Chefs'}
             serviceItemDescr={
-              'Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam'
+              'Our Master Chefs ensure you will have the best experience'
             }
           />
 
           <ServiceItem
             delay={'0.3s'}
             className={'fa fa-3x fa-utensils text-primary mb-4'}
-            serviceItemTitle={'Quality Food'}
+            serviceItemTitle={'Quality Drinks'}
             serviceItemDescr={
-              'Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam'
+              'We make sure that you will get only best and tasty drinks in our bar'
             }
           />
 
@@ -30,7 +30,7 @@ function Service() {
             className={'fa fa-3x fa-cart-plus text-primary mb-4'}
             serviceItemTitle={'Online Order'}
             serviceItemDescr={
-              'Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam'
+              'In our Bar you can online order any alcohol drink you want'
             }
           />
 
@@ -39,7 +39,7 @@ function Service() {
             className={'fa fa-3x fa-headset text-primary mb-4'}
             serviceItemTitle={'24/7 Service'}
             serviceItemDescr={
-              'Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam'
+              'You will get the best experience working with our staff'
             }
           />
         </div>
