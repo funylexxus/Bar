@@ -93,7 +93,7 @@ export const DrinkItem = (props) => {
       }}
     >
       <Grid container spacing={2}>
-        <Grid item xs>
+        <Grid item xs sx={{ maxHeight: 200 }}>
           <Img alt="complex" src={props.drink.imgUrl} />
         </Grid>
         <Grid item xs={12} sm container>

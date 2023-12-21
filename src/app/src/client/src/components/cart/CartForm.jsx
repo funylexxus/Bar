@@ -125,7 +125,7 @@ export function CartForm() {
           sx={{ margin: 'auto' }}
           onClick={submitOrder}
         >
-          Submit oder
+          Submit order
         </Button>
       </Box>
     </form>
