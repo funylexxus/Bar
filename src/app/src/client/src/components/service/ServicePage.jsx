@@ -9,7 +9,7 @@ function ServicePage() {
   return (
     <div className="container-xxl bg-white p-0">
       <Navbar></Navbar>
-      <NavbarAdd pageTitle={'Service'} pageName={'Service'} />
+      {/* <NavbarAdd pageTitle={'Service'} pageName={'Service'} /> */}
       <Service />
       <Footer />
     </div>
